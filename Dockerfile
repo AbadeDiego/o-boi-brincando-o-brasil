@@ -9,7 +9,7 @@ ENV NODE_ENV=production
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* npm-shrinkwrap.json* bun.lockb* ./
-RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+RUN npm install --legacy-peer-deps
 
 # ---------- Build ----------
 FROM node:20-alpine AS builder

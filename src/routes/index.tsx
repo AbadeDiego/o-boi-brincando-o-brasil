@@ -2,14 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Reveal } from "@/components/Reveal";
 
-import heroBoi from "@/assets/hero-boi.jpg";
-import screen1 from "@/assets/screen-1-modes.jpg";
-import screen2 from "@/assets/screen-2-character.jpg";
-import screen3 from "@/assets/screen-3-gameplay.jpg";
-import screen4 from "@/assets/screen-4-caderno.jpg";
-import manifest1 from "@/assets/manifestation-1.jpg";
-import manifest2 from "@/assets/manifestation-2.jpg";
-import manifest3 from "@/assets/manifestation-3.jpg";
+import heroBoiAsset from "@/assets/hero-boi-ornate.png.asset.json";
+import arenaAsset from "@/assets/tres-bois-arena.png.asset.json";
+import atelierAsset from "@/assets/coautoria-atelier.png.asset.json";
+import telasAsset from "@/assets/telas-app.png.asset.json";
+
+const heroBoi = heroBoiAsset.url;
+const arenaImg = arenaAsset.url;
+const atelierImg = atelierAsset.url;
+const telasImg = telasAsset.url;
+
 
 export const Route = createFileRoute("/")({
   head: () => ({

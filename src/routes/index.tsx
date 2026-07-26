@@ -2,14 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Reveal } from "@/components/Reveal";
 
-import heroBoi from "@/assets/hero-boi.jpg";
-import screen1 from "@/assets/screen-1-modes.jpg";
-import screen2 from "@/assets/screen-2-character.jpg";
-import screen3 from "@/assets/screen-3-gameplay.jpg";
-import screen4 from "@/assets/screen-4-caderno.jpg";
-import manifest1 from "@/assets/manifestation-1.jpg";
-import manifest2 from "@/assets/manifestation-2.jpg";
-import manifest3 from "@/assets/manifestation-3.jpg";
+import heroBoiAsset from "@/assets/hero-boi-ornate.png.asset.json";
+import arenaAsset from "@/assets/tres-bois-arena.png.asset.json";
+import atelierAsset from "@/assets/coautoria-atelier.png.asset.json";
+import telasAsset from "@/assets/telas-app.png.asset.json";
+
+const heroBoi = heroBoiAsset.url;
+const arenaImg = arenaAsset.url;
+const atelierImg = atelierAsset.url;
+const telasImg = telasAsset.url;
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -149,15 +151,17 @@ function Hero() {
             <div className="float-slow relative aspect-[4/5] overflow-hidden rounded-3xl">
               <img
                 src={heroBoi}
-                alt="Detalhe fotográfico de uma cabeça de boi ornamentada, referência visual ao imaginário do projeto O Boi."
-                width={1600}
-                height={1808}
-                className="h-full w-full object-cover"
+                alt="Boi ornamentado com bordados, fitas e adornos dourados — referência visual ao imaginário do projeto O Boi."
+                width={1728}
+                height={2160}
+                className="h-full w-full object-cover object-right"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
             </div>
           </Reveal>
         </div>
+
       </div>
 
       {/* Status ribbon — sober, typographic */}
@@ -241,20 +245,17 @@ const manifestations = [
   {
     kicker: "Modo I · Maranhão",
     title: "Bumba-meu-boi",
-    image: manifest1,
-    body: "O Complexo Cultural do Bumba-meu-boi do Maranhão é reconhecido pela UNESCO como Patrimônio Cultural Imaterial da Humanidade. Nascido da fusão entre tradições indígenas, africanas e europeias, o auto popular celebra, por meio da música, da dança e do teatro, o ciclo de morte e ressurreição do boi — figura central de um dos maiores patrimônios vivos do Brasil.",
+    body: "O Complexo Cultural do Bumba-meu-boi do Maranhão é reconhecido pela UNESCO como Patrimônio Cultural Imaterial da Humanidade. Nascido da fusão entre tradições indígenas, africanas e europeias, o auto popular celebra, por meio da música, da dança e do teatro, o ciclo de morte e ressurreição do boi.",
   },
   {
     kicker: "Modo II · Amazonas",
     title: "Boi-bumbá",
-    image: manifest2,
     body: "Tradição do Médio Amazonas, o Boi-bumbá é um dos maiores espetáculos populares do país. Reúne dimensões cênicas, coreográficas, plásticas e musicais em grande arena, capaz de mobilizar uma cidade inteira em torno de sua celebração anual.",
   },
   {
     kicker: "Modo III · Santa Catarina",
     title: "Boi-de-mamão",
-    image: manifest3,
-    body: "De forte caráter teatral, musical e intergeracional, o Boi-de-mamão reúne personagens populares como Cavalinho, Cabrinha e Maricota em cenas conduzidas por cantigas tradicionais, transmitidas de geração em geração como patrimônio vivo da cultura catarinense.",
+    body: "De forte caráter teatral, musical e intergeracional, o Boi-de-mamão reúne personagens populares como Cavalinho, Cabrinha e Maricota em cenas conduzidas por cantigas tradicionais, transmitidas de geração em geração.",
   },
 ];
 
@@ -273,39 +274,37 @@ function Manifestations() {
           </h2>
         </Reveal>
 
-        <div className="mt-24 flex flex-col gap-32 md:gap-48">
+        <Reveal delay={220}>
+          <div className="relative mt-16 overflow-hidden rounded-3xl">
+            <div className="aspect-[16/9] w-full">
+              <img
+                src={arenaImg}
+                alt="Três bois cerimoniais — Bumba-meu-boi, Boi-bumbá e Boi-de-mamão — reunidos em uma arena popular."
+                width={1728}
+                height={972}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
+          </div>
+        </Reveal>
+
+        <div className="mt-20 grid grid-cols-1 gap-14 md:grid-cols-3 md:gap-10">
           {manifestations.map((m, i) => (
-            <article
-              key={m.title}
-              className={`grid grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-16 ${
-                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <Reveal className="md:col-span-6">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-                  <img
-                    src={m.image}
-                    alt={`Referência visual — ${m.title}`}
-                    width={1200}
-                    height={1504}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out hover:scale-[1.03]"
-                  />
-                </div>
-              </Reveal>
-              <Reveal delay={140} className="md:col-span-6">
-                <span className="eyebrow">{m.kicker}</span>
-                <h3 className="display mt-5 text-[clamp(2rem,4vw,3.25rem)]">{m.title}</h3>
-                <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
-                  {m.body}
-                </p>
-              </Reveal>
-            </article>
+            <Reveal key={m.title} delay={i * 120}>
+              <div className="flex flex-col gap-4">
+                <span className="eyebrow text-accent">{m.kicker}</span>
+                <div className="hairline w-12" />
+                <h3 className="display text-[1.65rem] leading-tight">{m.title}</h3>
+                <p className="text-[14px] leading-relaxed text-muted-foreground">{m.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
 
         <Reveal>
-          <div className="mt-32 border-t border-border/60 pt-8">
+          <div className="mt-24 border-t border-border/60 pt-8">
             <p className="mx-auto max-w-3xl text-center text-[13px] leading-relaxed text-muted-foreground">
               Todas as manifestações são desenvolvidas em coautoria direta com mestres e grupos
               portadores das tradições, com consentimento, crédito e remuneração previstos desde a
@@ -318,30 +317,27 @@ function Manifestations() {
   );
 }
 
+
 /* ------------------------------------------------------------------ */
 /* SCREENS                                                             */
 /* ------------------------------------------------------------------ */
 
-const screens = [
+const screenCaptions = [
   {
-    title: "Escolha do modo",
-    body: "A tela inicial apresenta as três manifestações como cartas — cada uma um mundo com suas próprias regras.",
-    image: screen1,
+    title: "Identidade",
+    body: "O jogador monta seu brincante com indumentárias, penteados e paletas inspiradas nos grupos populares.",
   },
   {
-    title: "Personalização do brincante",
-    body: "O jogador monta seu brincante com indumentárias e cores inspiradas nas tradições populares.",
-    image: screen2,
+    title: "Cooperação",
+    body: "No coração da partida, brincantes tocam, dançam e conduzem o boi em ritmo compartilhado.",
   },
   {
-    title: "Partida cooperativa",
-    body: "No modo Bumba-meu-boi, a mecânica cooperativa conduz e reergue o boi ao longo da partida.",
-    image: screen3,
+    title: "Memória viva",
+    body: "Cenas, toadas e depoimentos dos mestres portadores ficam guardados como acervo do jogador.",
   },
   {
-    title: "Caderno do Brincante",
-    body: "Conteúdos desbloqueados: padrões visuais, toadas e vídeos com os mestres portadores das manifestações.",
-    image: screen4,
+    title: "Mapa cultural",
+    body: "Um Brasil de manifestações vivas: cada região abriga um modo e uma comunidade autora.",
   },
 ];
 
@@ -366,28 +362,27 @@ function Screens() {
           </p>
         </Reveal>
 
-        <div className="mt-24 grid grid-cols-1 gap-16 sm:grid-cols-2 md:gap-20 lg:grid-cols-4">
-          {screens.map((s, i) => (
-            <Reveal key={s.title} delay={i * 120}>
-              <figure className="flex flex-col">
-                <div className="phone-frame">
-                  <img
-                    src={s.image}
-                    alt={`Conceito — ${s.title}`}
-                    width={720}
-                    height={1440}
-                    loading="lazy"
-                    className="h-full w-full rounded-[2.1rem] object-cover"
-                  />
-                </div>
-                <figcaption className="mt-8">
-                  <span className="text-[12px] text-accent">Tela {i + 1}</span>
-                  <h4 className="display mt-2 text-[1.15rem] leading-snug">{s.title}</h4>
-                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
-                    {s.body}
-                  </p>
-                </figcaption>
-              </figure>
+        <Reveal delay={320}>
+          <div className="relative mt-16 overflow-hidden rounded-3xl border border-border/60 bg-background/40 p-4 md:p-8">
+            <img
+              src={telasImg}
+              alt="Quatro telas conceituais do aplicativo O Boi — Identidade, Cooperação, Memória Viva e Mapa Cultural."
+              width={1922}
+              height={860}
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+          </div>
+        </Reveal>
+
+        <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
+          {screenCaptions.map((s, i) => (
+            <Reveal key={s.title} delay={i * 100}>
+              <div>
+                <span className="text-[12px] text-accent">Tela {i + 1}</span>
+                <h4 className="display mt-2 text-[1.05rem] leading-snug">{s.title}</h4>
+                <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{s.body}</p>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -396,6 +391,7 @@ function Screens() {
   );
 }
 
+
 /* ------------------------------------------------------------------ */
 /* ABOUT                                                               */
 /* ------------------------------------------------------------------ */
@@ -403,26 +399,46 @@ function Screens() {
 function About() {
   return (
     <section id="sobre" className="border-t border-border/60">
-      <div className="mx-auto max-w-4xl px-6 py-32 text-center md:py-48">
-        <Reveal>
-          <span className="eyebrow">Sobre o projeto</span>
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="display mt-8 text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.15]">
-            O Boi é desenvolvido por uma equipe multidisciplinar de games, cultura popular e
-            acessibilidade, em coautoria com mestres do Maranhão, do Amazonas e de Santa Catarina.
-          </p>
-        </Reveal>
-        <Reveal delay={260}>
-          <p className="mt-10 text-[14px] leading-relaxed text-muted-foreground">
-            O projeto está em busca de parceiros e patrocínio para viabilizar seu desenvolvimento
-            completo.
-          </p>
-        </Reveal>
+      <div className="mx-auto max-w-6xl px-6 py-32 md:py-48">
+        <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-12">
+          <Reveal className="md:col-span-6">
+            <div className="relative overflow-hidden rounded-3xl">
+              <div className="aspect-[4/3] w-full">
+                <img
+                  src={atelierImg}
+                  alt="Mesa de trabalho colaborativo: mestres e equipe do jogo O Boi projetando indumentárias, escutando gravações e desenhando o aplicativo."
+                  width={1728}
+                  height={1296}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
+          <div className="md:col-span-6">
+            <Reveal>
+              <span className="eyebrow">Sobre o projeto</span>
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="display mt-6 text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2]">
+                O Boi é desenvolvido por uma equipe multidisciplinar de games, cultura popular e
+                acessibilidade, em coautoria com mestres do Maranhão, do Amazonas e de Santa
+                Catarina.
+              </p>
+            </Reveal>
+            <Reveal delay={260}>
+              <p className="mt-8 text-[14px] leading-relaxed text-muted-foreground">
+                O projeto está em busca de parceiros e patrocínio para viabilizar seu
+                desenvolvimento completo.
+              </p>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+
 
 /* ------------------------------------------------------------------ */
 /* FOOTER + CAPTURE                                                    */

@@ -399,26 +399,46 @@ function Screens() {
 function About() {
   return (
     <section id="sobre" className="border-t border-border/60">
-      <div className="mx-auto max-w-4xl px-6 py-32 text-center md:py-48">
-        <Reveal>
-          <span className="eyebrow">Sobre o projeto</span>
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="display mt-8 text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.15]">
-            O Boi é desenvolvido por uma equipe multidisciplinar de games, cultura popular e
-            acessibilidade, em coautoria com mestres do Maranhão, do Amazonas e de Santa Catarina.
-          </p>
-        </Reveal>
-        <Reveal delay={260}>
-          <p className="mt-10 text-[14px] leading-relaxed text-muted-foreground">
-            O projeto está em busca de parceiros e patrocínio para viabilizar seu desenvolvimento
-            completo.
-          </p>
-        </Reveal>
+      <div className="mx-auto max-w-6xl px-6 py-32 md:py-48">
+        <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-12">
+          <Reveal className="md:col-span-6">
+            <div className="relative overflow-hidden rounded-3xl">
+              <div className="aspect-[4/3] w-full">
+                <img
+                  src={atelierImg}
+                  alt="Mesa de trabalho colaborativo: mestres e equipe do jogo O Boi projetando indumentárias, escutando gravações e desenhando o aplicativo."
+                  width={1728}
+                  height={1296}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </Reveal>
+          <div className="md:col-span-6">
+            <Reveal>
+              <span className="eyebrow">Sobre o projeto</span>
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="display mt-6 text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2]">
+                O Boi é desenvolvido por uma equipe multidisciplinar de games, cultura popular e
+                acessibilidade, em coautoria com mestres do Maranhão, do Amazonas e de Santa
+                Catarina.
+              </p>
+            </Reveal>
+            <Reveal delay={260}>
+              <p className="mt-8 text-[14px] leading-relaxed text-muted-foreground">
+                O projeto está em busca de parceiros e patrocínio para viabilizar seu
+                desenvolvimento completo.
+              </p>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+
 
 /* ------------------------------------------------------------------ */
 /* FOOTER + CAPTURE                                                    */

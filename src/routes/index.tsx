@@ -322,26 +322,22 @@ function Manifestations() {
 /* SCREENS                                                             */
 /* ------------------------------------------------------------------ */
 
-const screens = [
+const screenCaptions = [
   {
-    title: "Escolha do modo",
-    body: "A tela inicial apresenta as três manifestações como cartas — cada uma um mundo com suas próprias regras.",
-    image: screen1,
+    title: "Identidade",
+    body: "O jogador monta seu brincante com indumentárias, penteados e paletas inspiradas nos grupos populares.",
   },
   {
-    title: "Personalização do brincante",
-    body: "O jogador monta seu brincante com indumentárias e cores inspiradas nas tradições populares.",
-    image: screen2,
+    title: "Cooperação",
+    body: "No coração da partida, brincantes tocam, dançam e conduzem o boi em ritmo compartilhado.",
   },
   {
-    title: "Partida cooperativa",
-    body: "No modo Bumba-meu-boi, a mecânica cooperativa conduz e reergue o boi ao longo da partida.",
-    image: screen3,
+    title: "Memória viva",
+    body: "Cenas, toadas e depoimentos dos mestres portadores ficam guardados como acervo do jogador.",
   },
   {
-    title: "Caderno do Brincante",
-    body: "Conteúdos desbloqueados: padrões visuais, toadas e vídeos com os mestres portadores das manifestações.",
-    image: screen4,
+    title: "Mapa cultural",
+    body: "Um Brasil de manifestações vivas: cada região abriga um modo e uma comunidade autora.",
   },
 ];
 
@@ -366,28 +362,27 @@ function Screens() {
           </p>
         </Reveal>
 
-        <div className="mt-24 grid grid-cols-1 gap-16 sm:grid-cols-2 md:gap-20 lg:grid-cols-4">
-          {screens.map((s, i) => (
-            <Reveal key={s.title} delay={i * 120}>
-              <figure className="flex flex-col">
-                <div className="phone-frame">
-                  <img
-                    src={s.image}
-                    alt={`Conceito — ${s.title}`}
-                    width={720}
-                    height={1440}
-                    loading="lazy"
-                    className="h-full w-full rounded-[2.1rem] object-cover"
-                  />
-                </div>
-                <figcaption className="mt-8">
-                  <span className="text-[12px] text-accent">Tela {i + 1}</span>
-                  <h4 className="display mt-2 text-[1.15rem] leading-snug">{s.title}</h4>
-                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
-                    {s.body}
-                  </p>
-                </figcaption>
-              </figure>
+        <Reveal delay={320}>
+          <div className="relative mt-16 overflow-hidden rounded-3xl border border-border/60 bg-background/40 p-4 md:p-8">
+            <img
+              src={telasImg}
+              alt="Quatro telas conceituais do aplicativo O Boi — Identidade, Cooperação, Memória Viva e Mapa Cultural."
+              width={1922}
+              height={860}
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+          </div>
+        </Reveal>
+
+        <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
+          {screenCaptions.map((s, i) => (
+            <Reveal key={s.title} delay={i * 100}>
+              <div>
+                <span className="text-[12px] text-accent">Tela {i + 1}</span>
+                <h4 className="display mt-2 text-[1.05rem] leading-snug">{s.title}</h4>
+                <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">{s.body}</p>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -395,6 +390,7 @@ function Screens() {
     </section>
   );
 }
+
 
 /* ------------------------------------------------------------------ */
 /* ABOUT                                                               */

@@ -245,20 +245,17 @@ const manifestations = [
   {
     kicker: "Modo I · Maranhão",
     title: "Bumba-meu-boi",
-    image: manifest1,
-    body: "O Complexo Cultural do Bumba-meu-boi do Maranhão é reconhecido pela UNESCO como Patrimônio Cultural Imaterial da Humanidade. Nascido da fusão entre tradições indígenas, africanas e europeias, o auto popular celebra, por meio da música, da dança e do teatro, o ciclo de morte e ressurreição do boi — figura central de um dos maiores patrimônios vivos do Brasil.",
+    body: "O Complexo Cultural do Bumba-meu-boi do Maranhão é reconhecido pela UNESCO como Patrimônio Cultural Imaterial da Humanidade. Nascido da fusão entre tradições indígenas, africanas e europeias, o auto popular celebra, por meio da música, da dança e do teatro, o ciclo de morte e ressurreição do boi.",
   },
   {
     kicker: "Modo II · Amazonas",
     title: "Boi-bumbá",
-    image: manifest2,
     body: "Tradição do Médio Amazonas, o Boi-bumbá é um dos maiores espetáculos populares do país. Reúne dimensões cênicas, coreográficas, plásticas e musicais em grande arena, capaz de mobilizar uma cidade inteira em torno de sua celebração anual.",
   },
   {
     kicker: "Modo III · Santa Catarina",
     title: "Boi-de-mamão",
-    image: manifest3,
-    body: "De forte caráter teatral, musical e intergeracional, o Boi-de-mamão reúne personagens populares como Cavalinho, Cabrinha e Maricota em cenas conduzidas por cantigas tradicionais, transmitidas de geração em geração como patrimônio vivo da cultura catarinense.",
+    body: "De forte caráter teatral, musical e intergeracional, o Boi-de-mamão reúne personagens populares como Cavalinho, Cabrinha e Maricota em cenas conduzidas por cantigas tradicionais, transmitidas de geração em geração.",
   },
 ];
 
@@ -277,39 +274,37 @@ function Manifestations() {
           </h2>
         </Reveal>
 
-        <div className="mt-24 flex flex-col gap-32 md:gap-48">
+        <Reveal delay={220}>
+          <div className="relative mt-16 overflow-hidden rounded-3xl">
+            <div className="aspect-[16/9] w-full">
+              <img
+                src={arenaImg}
+                alt="Três bois cerimoniais — Bumba-meu-boi, Boi-bumbá e Boi-de-mamão — reunidos em uma arena popular."
+                width={1728}
+                height={972}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
+          </div>
+        </Reveal>
+
+        <div className="mt-20 grid grid-cols-1 gap-14 md:grid-cols-3 md:gap-10">
           {manifestations.map((m, i) => (
-            <article
-              key={m.title}
-              className={`grid grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-16 ${
-                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <Reveal className="md:col-span-6">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-                  <img
-                    src={m.image}
-                    alt={`Referência visual — ${m.title}`}
-                    width={1200}
-                    height={1504}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out hover:scale-[1.03]"
-                  />
-                </div>
-              </Reveal>
-              <Reveal delay={140} className="md:col-span-6">
-                <span className="eyebrow">{m.kicker}</span>
-                <h3 className="display mt-5 text-[clamp(2rem,4vw,3.25rem)]">{m.title}</h3>
-                <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
-                  {m.body}
-                </p>
-              </Reveal>
-            </article>
+            <Reveal key={m.title} delay={i * 120}>
+              <div className="flex flex-col gap-4">
+                <span className="eyebrow text-accent">{m.kicker}</span>
+                <div className="hairline w-12" />
+                <h3 className="display text-[1.65rem] leading-tight">{m.title}</h3>
+                <p className="text-[14px] leading-relaxed text-muted-foreground">{m.body}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
 
         <Reveal>
-          <div className="mt-32 border-t border-border/60 pt-8">
+          <div className="mt-24 border-t border-border/60 pt-8">
             <p className="mx-auto max-w-3xl text-center text-[13px] leading-relaxed text-muted-foreground">
               Todas as manifestações são desenvolvidas em coautoria direta com mestres e grupos
               portadores das tradições, com consentimento, crédito e remuneração previstos desde a
@@ -321,6 +316,7 @@ function Manifestations() {
     </section>
   );
 }
+
 
 /* ------------------------------------------------------------------ */
 /* SCREENS                                                             */

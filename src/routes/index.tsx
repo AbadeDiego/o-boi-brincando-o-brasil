@@ -151,15 +151,17 @@ function Hero() {
             <div className="float-slow relative aspect-[4/5] overflow-hidden rounded-3xl">
               <img
                 src={heroBoi}
-                alt="Detalhe fotográfico de uma cabeça de boi ornamentada, referência visual ao imaginário do projeto O Boi."
-                width={1600}
-                height={1808}
-                className="h-full w-full object-cover"
+                alt="Boi ornamentado com bordados, fitas e adornos dourados — referência visual ao imaginário do projeto O Boi."
+                width={1728}
+                height={2160}
+                className="h-full w-full object-cover object-right"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
             </div>
           </Reveal>
         </div>
+
       </div>
 
       {/* Status ribbon — sober, typographic */}
